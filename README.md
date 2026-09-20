@@ -28,7 +28,44 @@ To formulate a C program to convert a decimal number into its binary equivalent 
 ### Step 8: 
    Stop
 # Program:
+#include <stdio.h>
+
+int main()
+{
+    int n, binary[32], i = 0;
+
+    printf("Enter a decimal number: ");
+    scanf("%d", &n);
+
+    if (n == 0)
+    {
+        printf("Binary = 0\n");
+    }
+    else
+    {
+        while (n > 0)
+        {
+            binary[i] = n % 2;
+            n = n / 2;
+            i++;
+        }
+
+        printf("Binary = ");
+
+        while (i > 0)
+        {
+            i--;
+            printf("%d", binary[i]);
+        }
+
+        printf("\n");
+    }
+
+    return 0;
+}
 # Output:
+Enter a decimal number: 25
+Binary = 11001
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -67,7 +104,67 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 9: 
   Stop
 # Program:
+#include<stdio.h>
+int main()
+{
+    int a[10][10];
+    int i,j,n;
+    scanf("%d",&n);
+    int min,max,col;
+    int sr = -1,sc = -1,val = 0;
+    for(i = 0;i < n;i++)
+    {
+        for(j = 0;j < n;j++)
+        {
+            scanf("%d",&a[i][j]);
+        }
+    }
+    printf("The matrix is\n");
+    for(i = 0;i < n;i++)
+    {
+        for(j = 0;j < n;j++)
+        {
+            printf("%d ",a[i][j]);
+        }
+        printf("\n");
+    }
+    printf("\n");
+    for(i = 0;i < n;i++)
+    {
+        min = a[i][0];
+        col = 0;
+        for(j = 1;j < n;j++)
+        {
+            if(a[i][j] <=  min)
+            {
+                min  = a[i][j];
+                col = j;
+            }
+        }
+        max = a[0][col];
+        for(j = 1;j < n;j++)
+        {
+            if(a[j][col] > max)
+            {
+                max  = a[j][col];
+            }
+        }
+        if(min == max)
+        {
+           sr = i;
+           sc = col;
+           val = min;
+        }
+    }
+    if(sr != -1)
+    {
+        printf("Saddle point (%d, %d) : %d",sr,sc,val);
+    }
+    return 0;
+}
 # Output:
+<img width="1202" height="605" alt="image" src="https://github.com/user-attachments/assets/ecf619b3-9128-4c1b-9205-fc1389433b32" />
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -101,7 +198,29 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 10: 
   Stop
 # Program:
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    char str[100];
+    char *p;
+    fgets(str,sizeof(str),stdin);
+    p = str;
+    while(*p != '\0')
+       p++;
+    p--;
+    if(*p == '\n')
+      p--;
+    while(p >= str)
+    {
+        putchar(*p);
+        p--;
+    }
+    return 0;
+}
 # Output:
+<img width="1193" height="350" alt="image" src="https://github.com/user-attachments/assets/f6b6c813-fcf5-404b-a4ef-afa85776c3bd" />
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -135,7 +254,41 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 8:
   Stop
 # Program:
+#include <stdio.h>
+
+int main()
+{
+    char str[100];
+    int freq[256] = {0};
+    int i;
+
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin);
+
+    for (i = 0; str[i] != '\0'; i++)
+    {
+        if (str[i] != '\n')
+            freq[(unsigned char)str[i]]++;
+    }
+
+    printf("\nCharacter Frequency:\n");
+
+    for (i = 0; i < 256; i++)
+    {
+        if (freq[i] > 0)
+            printf("%c = %d\n", i, freq[i]);
+    }
+
+    return 0;
+}
 # Output:
+Enter a string: hello
+
+Character Frequency:
+e = 1
+h = 1
+l = 2
+o = 1
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -169,7 +322,60 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 8: 
   Stop
 # Program:
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char str[200], words[50][30];
+    int n = 0, i, j, duplicate;
+
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin);
+
+    str[strcspn(str, "\n")] = '\0';
+
+    char *word = strtok(str, " ");
+
+    while (word != NULL)
+    {
+        duplicate = 0;
+
+        for (i = 0; i < n; i++)
+        {
+            if (strcmp(words[i], word) == 0)
+            {
+                duplicate = 1;
+                break;
+            }
+        }
+
+        if (!duplicate)
+        {
+            strcpy(words[n], word);
+            n++;
+        }
+
+        word = strtok(NULL, " ");
+    }
+
+    printf("String with unique words: ");
+
+    for (i = 0; i < n; i++)
+    {
+        printf("%s", words[i]);
+
+        if (i < n - 1)
+            printf(" ");
+    }
+
+    printf("\n");
+
+    return 0;
+}
 # Output:
+Enter a string: C programming is easy C programming is useful
+String with unique words: C programming is easy useful
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
